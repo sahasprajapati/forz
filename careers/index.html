@@ -56,16 +56,14 @@
     <script type="text/javascript">
         (function() {
             // https://dashboard.emailjs.com/admin/account
-            emailjs.init('gPCOXopOMiJs9k9L6');console.log("Wow")
+            emailjs.init('gPCOXopOMiJs9k9L6');
         })();
     </script>
     <script type="text/javascript">
-        console.log("Wow")
         window.onload = function() {
             document.getElementById('contact-form').addEventListener('submit', function(event) {
                 event.preventDefault();
-                console.log(this)
-
+				const data = new FormData(document.getElementById('contact-form'));
                 // these IDs from the previous steps
                 emailjs.sendForm('forz_email', 'career_template', this)
                     .then(function() {
