@@ -52,6 +52,30 @@
 	<!-- END: Styles -->
 	<!-- jQuery -->
 	<script src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('gPCOXopOMiJs9k9L6');console.log("Wow")
+        })();
+    </script>
+    <script type="text/javascript">
+        console.log("Wow")
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                console.log(this)
+
+                // these IDs from the previous steps
+                emailjs.sendForm('forz_email', 'career_template', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -273,18 +297,18 @@
 						<h1 class="display-4 mt-5 mb-130 show-on-scroll" data-show-distance="10"
 							data-show-duration="500"> Careers at Forz 👋</h1>
 
-						<form action="#">
+						<form  id="contact-form">
 							<p class="lead font-weight-medium mb-30">Join Our UI/UX and Branding Team 😎</p>
 
 							<div class="row gh-xs gv-xs mb-n7">
 								<div class="col-auto show-on-scroll" data-show-delay="100" data-show-distance="10"
-									data-show-duration="500"><input class="checkbox-btn" id="checkboxUIDesigner"
+									data-show-duration="500"><input class="checkbox-btn" id="checkboxUIDesigner" name="checkboxUIDesigner" value="designer"
 										type="checkbox"> <label for="checkboxUIDesigner"><span>UI
 											Designer</span></label>
 								</div>
 
 								<div class="col-auto show-on-scroll" data-show-delay="150" data-show-distance="10"
-									data-show-duration="500"><input class="checkbox-btn" id="checkboxWebDeveloper"
+									data-show-duration="500"><input class="checkbox-btn" id="checkboxWebDeveloper" name="checkboxWebDeveloper" value="developer"
 										type="checkbox"> <label for="checkboxWebDeveloper"><span>Web
 											Developer</span></label>
 								</div>
@@ -293,30 +317,32 @@
 
 							<div class="row gh-1 gv-3 mt-30">
 								<div class="col-12 show-on-scroll" data-show-delay="!00" data-show-distance="10"
-									data-show-duration="500"><input class="form-control form-control-lg form-control"
+									data-show-duration="500"><input class="form-control form-control-lg form-control" name="name"
 										placeholder="Your Name *" type="name" required></div>
 
 								<div class="col-12 col-md-6 show-on-scroll" data-show-delay="150"
-									data-show-distance="10" data-show-duration="500"><input
+									data-show-distance="10" data-show-duration="500"><input  name="email"
 										class="form-control form-control-lg form-control" placeholder="Your Email *"
 										type="email" required></div>
 
 								<div class="col-12 col-md-6 show-on-scroll" data-show-delay="200"
-									data-show-distance="10" data-show-duration="500"><input
+									data-show-distance="10" data-show-duration="500"><input  name="phone"
 										class="form-control form-control-lg form-control" placeholder="Your Phone *"
 										type="phone" required></div>
 
 								<div class="col-12 show-on-scroll" data-show-delay="350" data-show-distance="10"
 									data-show-duration="500"><textarea class="form-control form-control-lg form-control"
+									name="cover"
 										placeholder="Cover Letter *" rows="1" required></textarea></div>
 
 								<div class="col-12 show-on-scroll" data-show-delay="350" data-show-distance="10"
 									data-show-duration="500"><textarea class="form-control form-control-lg form-control"
+									name="message"
 										placeholder="Message" rows="1"></textarea></div>
 							</div>
 
 							<p class="lead font-weight-medium mb-30 mt-60 pt-9"><input id="upload" type="file"
-									name="filename" style="display: none;" required />
+									 style="display: none;"  />
 								<a href="" id="upload_link"><u>Upload CV*:</u></a>
 							</p>
 							<script>
@@ -328,7 +354,7 @@
 								});
 							</script>
 							<button class="btn btn-dark btn-with-ball mt-90 show-on-scroll" data-show-delay="300"
-								data-show-distance="10" data-show-duration="500" name="button" type="button">submit
+								data-show-distance="10" data-show-duration="500" name="button" type="submit"  value="Send">Submit
 							</button>
 						</form>
 					</div>

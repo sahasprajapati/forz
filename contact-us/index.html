@@ -51,6 +51,30 @@
     <!-- END: Styles -->
     <!-- jQuery -->
     <script src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('gPCOXopOMiJs9k9L6');console.log("Wow")
+        })();
+    </script>
+    <script type="text/javascript">
+        console.log("Wow")
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                console.log(this)
+
+                // these IDs from the previous steps
+                emailjs.sendForm('forz_email', 'contact_template', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -308,27 +332,27 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-8 mt-5 mt-lg-0">
-                        <form action="POST">
+                        <form  id="contact-form">
                             <div class="row gh-1 gv-2">
                                 <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400"
                                     data-show-distance="10" data-show-delay="100">
-                                    <input type="name" class="form-control" placeholder="Your Name *" required>
+                                    <input type="name" name="name" class="form-control" placeholder="Your Name *" required>
                                 </div>
                                 <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400"
                                     data-show-distance="10" data-show-delay="150">
-                                    <input type="email" class="form-control" placeholder="Your Email *" required>
+                                    <input type="email" name="email" class="form-control" placeholder="Your Email *" required>
                                 </div>
                                 <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400"
                                     data-show-distance="10" data-show-delay="200">
-                                    <input type="phone" class="form-control" placeholder="Your Phone">
+                                    <input type="phone" name="phone" class="form-control" placeholder="Your Phone">
                                 </div>
                                 <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400"
                                     data-show-distance="10" data-show-delay="250">
-                                    <input type="company" class="form-control" placeholder="Company">
+                                    <input type="company" name="company" class="form-control" placeholder="Company">
                                 </div>
                                 <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400"
                                     data-show-distance="10" data-show-delay="300">
-                                    <select class="form-control" required>
+                                    <select class="form-control" name="project" required>
                                         <option selected>Type of Project *</option>
                                         <option>UI/UX Design</option>
                                         <option>Brand Kit</option>
@@ -339,7 +363,7 @@
                                 </div>
                                 <div class="col-12 col-md-6 show-on-scroll" data-show-duration="400"
                                     data-show-distance="10" data-show-delay="350">
-                                    <select class="form-control" required>
+                                    <select class="form-control" required name="budget">
                                         <option selected>Your Budget* (USD)</option>
                                         <option>&lt; 10,000</option>
                                         <option>10-20k</option>
@@ -349,12 +373,12 @@
                                 </div>
                                 <div class="col-12 show-on-scroll" data-show-duration="400" data-show-distance="10"
                                     data-show-delay="450">
-                                    <textarea class="form-control" rows="1" placeholder="Message *"></textarea>
+                                    <textarea class="form-control" rows="1" placeholder="Message *" name="message"></textarea>
                                 </div>
                                 <div class="col-12 show-on-scroll" data-show-duration="400" data-show-distance="10"
                                     data-show-delay="470">
-                                    <button class="btn btn-dark btn-with-ball mt-20" type="button"
-                                        name="button">submit</button>
+                                    <button class="btn btn-dark btn-with-ball mt-20" type="submit"
+                                        name="button" value="Send">submit</button>
                                 </div>
                             </div>
                         </form>
